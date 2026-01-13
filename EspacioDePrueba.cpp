@@ -81,13 +81,21 @@ void VerAccion(char Simbolo){
     }
 }
 
-void MoverPersonaje(int PosicionFilaDeseada, int PosicionColumnasDeseada,std::vector<std::vector<char>>& Mapa/*struct nashe()*/){
+
+struct JugadorPosicion
+        {
+            int Filas;
+            int Columnas;
+        };
+
+void MoverPersonaje(int PosicionFilaDeseada, int PosicionColumnasDeseada,std::vector<std::vector<char>>& Mapa, JugadorPosicion& Personaje){
     char CaracterPosicionDeseada = Mapa[PosicionFilaDeseada][PosicionColumnasDeseada];
     bool TorF = VerificarSiguienteCasilla(PosicionFilaDeseada, PosicionColumnasDeseada, Mapa);
     if ( TorF == true){
-        std::vector CordJugador=BuscarJugador(Mapa);
         Mapa[PosicionFilaDeseada][PosicionColumnasDeseada]='@';
-        Mapa[CordJugador[0]][CordJugador[1]]='.';
+        Mapa[Personaje.Filas][Personaje.Columnas]='.';
+        Personaje.Filas=PosicionFilaDeseada;
+        Personaje.Columnas=PosicionColumnasDeseada;
     }else{
         VerAccion(CaracterPosicionDeseada);
     }
@@ -97,16 +105,10 @@ void MoverPersonaje(int PosicionFilaDeseada, int PosicionColumnasDeseada,std::ve
 void Movimiento(std::vector<std::vector<char>>& Mapa){
     int Tecla;    
     std::cout<<"Presione ESC para dejar de moverse"<<"\n";
+    std::vector<int> Posi = BuscarJugador(Mapa);
+    JugadorPosicion Posicion{Posi[0],Posi[1]};
     do{
         std::cout<<"\n";
-        auto Posi = BuscarJugador(Mapa);
-        struct JugadorPosicion
-        {
-            int Filas;
-            int Columnas;
-        };JugadorPosicion Posicion;
-        Posicion.Filas=Posi[0];
-        Posicion.Columnas=Posi[1];
         MostrarMapa(Mapa);
         Tecla=getch();
         if(Tecla==27){
@@ -115,19 +117,19 @@ void Movimiento(std::vector<std::vector<char>>& Mapa){
         }
         if(Tecla==80){
             std::cout<<'\n';
-            MoverPersonaje(Posicion.Filas+1,Posicion.Columnas,Mapa);
+            MoverPersonaje(Posicion.Filas+1,Posicion.Columnas,Mapa,Posicion);
         }
         if(Tecla==72){
             std::cout<<'\n';
-            MoverPersonaje(Posicion.Filas-1,Posicion.Columnas,Mapa);
+            MoverPersonaje(Posicion.Filas-1,Posicion.Columnas,Mapa,Posicion);
         }
         if(Tecla==75){
             std::cout<<'\n';
-            MoverPersonaje(Posicion.Filas,Posicion.Columnas-1,Mapa);
+            MoverPersonaje(Posicion.Filas,Posicion.Columnas-1,Mapa,Posicion);
         }
         if(Tecla==77){
             std::cout<<'\n';
-            MoverPersonaje(Posicion.Filas,Posicion.Columnas+1,Mapa);
+            MoverPersonaje(Posicion.Filas,Posicion.Columnas+1,Mapa,Posicion);
         }
     }while(true);
 }
