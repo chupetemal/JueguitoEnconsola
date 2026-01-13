@@ -24,7 +24,7 @@ public:
 
     void Menu();
 
-    void Movimiento(std::vector<std::vector<char>>); 
+    void Movimiento(std::vector<std::vector<char>>& Mapa); 
     
     ~clasePJS();
 
@@ -122,18 +122,16 @@ const std::vector<std::vector<char>>Pasarmapa(int TipoDeMapa){
     return Mapa;
 }
 
-
 // la interfaz que va a ver el usuario
 void clasePJS::Menu(){
-    int Op;
+int Op;
     while (true){
         std::cout<<"-----------------------------\n";
         std::cout<<"1. Moverse\n2. Ver Datos De Personaje\n3. Ver Inventario\n4. Descansar\n5.Ver mapa\n";
         std::cout<<"-----------------------------\n";
         std::cout<<"ingrese la opcion que quiere: ";
         std::cin>>Op;
-        switch (Op)
-        {
+        switch (Op){
         case 1:
             /* lo de moverse con la flechitas*/
             break;
@@ -147,14 +145,12 @@ void clasePJS::Menu(){
             //descanzar()
             break;
         case 5:
-            Movimiento(Pasarmapa(1));
+            std::vector<std::vector<char>> Mapa=Pasarmapa(1);
+            Movimiento(Mapa);
             break;
-        default:
-            std::cout<<"no existe opcion para ese numero, porfavor ingrese alguno numero que este en la lista\n";
-            break;
-        }
-    }
-};
+        }    
+    }        
+}        
 
 //el madafukin destructor
 clasePJS::~clasePJS(){
@@ -239,7 +235,7 @@ void MoverPersonaje(int PosicionFilaDeseada, int PosicionColumnasDeseada,std::ve
     return;
 } 
 
-void Movimiento(std::vector<std::vector<char>>& Mapa){
+void clasePJS::Movimiento(std::vector<std::vector<char>>& Mapa){
     int Tecla;    
     std::cout<<"Presione ESC para dejar de moverse"<<"\n";
     std::vector<int> Posi = BuscarJugador(Mapa);
