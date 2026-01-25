@@ -4,6 +4,11 @@
 #include <string>
 #include <conio.h>
 
+struct JugadorPosicion
+{
+    int Filas;
+    int Columnas;
+};
 class clasePJS{
     private:
     std::string Nombre;
@@ -12,7 +17,6 @@ class clasePJS{
     int Armadura;
     int Fila;
     int Columna;
-
 public:
     void VerInventario(); 
 
@@ -29,6 +33,34 @@ public:
     ~clasePJS();
 
     clasePJS(std::string,int,int,int);
+
+    void Combate();
+
+    void EncuentroConEnemigo(char Caracter);
+
+    void VerAccion(char Caracter);
+
+    void IngresoAEstructura(char caracter);
+
+    void MoverPersonaje(int PosicionFilaDeseada, int PosicionColumnasDeseada,std::vector<std::vector<char>>&, JugadorPosicion& Personaje);
+
+    void Pegar();
+
+
+
+};
+clasePJS::~clasePJS(){
+}
+class Enemigo{
+    private:
+        std::string Nombre;
+        int Salud;
+        int Danio;
+        int Armadura;
+    public:
+        
+
+
 
 };
 
@@ -117,8 +149,8 @@ const std::vector<std::vector<char>>Pasarmapa(int TipoDeMapa){
     std::vector<std::vector<char>>Mapa(MAPAD.filas, std::vector<char>(MAPAD.columnas, '.'));
     int MitadFil = MAPAD.filas / 2;
     Mapa[MitadFil][4]='@';
-    Mapa[MitadFil][1]='E';
     Mapa[MitadFil][5]='#';
+    Mapa[MitadFil][2]='E';
     return Mapa;
 }
 
@@ -152,9 +184,11 @@ int Op;
     }        
 }        
 
-//el madafukin destructor
-clasePJS::~clasePJS(){
+void clasePJS::Pegar(){
+
 }
+
+//el madafukin destructor
 
 std::vector<std::vector<char>> mapa;
 
@@ -192,21 +226,36 @@ const std::vector<int> BuscarJugador(const std::vector<std::vector<char>>& Map){
 
 bool VerificarSiguienteCasilla(int PosicionFila, int PosicionColumnas, std::vector<std::vector<char>>Mapa){
     const char Casilla=Mapa[PosicionFila][PosicionColumnas];
-    if ( Casilla == '.'){
+    if (Casilla == '.'){
         return true;
     }else{
         return false;
     }
 }
 
-void VerAccion(char Simbolo){
-    /*
+void clasePJS::Combate(){
+    std::cout<<"no pelien";
+}
+
+void clasePJS::EncuentroConEnemigo(char caracter){
+    if (caracter=='E'){
+        std::cout<<"te encuentras un guardia con una poronga gigante";
+        Combate();
+    }
+}
+
+void clasePJS::IngresoAEstructura(char caracter){
+    std::cout<<"nashe";
+}
+
+void clasePJS::VerAccion(char Caracter){
+    /*39
     # = Puertas
     E = enemigos
     */
-   switch(Simbolo){
+   switch(Caracter){
        case 'E':
-       std::cout<<"noooo un oso wacho";
+       EncuentroConEnemigo(Caracter); 
        break;
        case '#':
        std::cout<<"noooooo no lo puedo creer una puerta👌";
@@ -215,13 +264,7 @@ void VerAccion(char Simbolo){
 }
 
 
-struct JugadorPosicion
-{
-    int Filas;
-    int Columnas;
-};
-
-void MoverPersonaje(int PosicionFilaDeseada, int PosicionColumnasDeseada,std::vector<std::vector<char>>& Mapa, JugadorPosicion& Personaje){
+void clasePJS::MoverPersonaje(int PosicionFilaDeseada, int PosicionColumnasDeseada,std::vector<std::vector<char>>& Mapa, JugadorPosicion& Personaje){
     char CaracterPosicionDeseada = Mapa[PosicionFilaDeseada][PosicionColumnasDeseada];
     bool TorF = VerificarSiguienteCasilla(PosicionFilaDeseada, PosicionColumnasDeseada, Mapa);
     if ( TorF == true){
@@ -273,7 +316,7 @@ int main(){
     std::cin>>nombre;
     
     clasePJS Jugador = SeleccionDePersonaje(nombre);
-
+    
     while (true){
         bool vivo;
         vivo=Jugador.estado();

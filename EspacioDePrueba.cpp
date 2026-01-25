@@ -126,7 +126,7 @@ void Movimiento(std::vector<std::vector<char>>& Mapa){
         if(Tecla==75){
             std::cout<<'\n';
             MoverPersonaje(Posicion.Filas,Posicion.Columnas-1,Mapa,Posicion);
-        }
+
         if(Tecla==77){
             std::cout<<'\n';
             MoverPersonaje(Posicion.Filas,Posicion.Columnas+1,Mapa,Posicion);
