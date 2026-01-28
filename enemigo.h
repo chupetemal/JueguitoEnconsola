@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#pragma once
 class Enemigo{
     private:
         std::string EnemigoNombre;
@@ -19,6 +19,6 @@ Enemigo::Enemigo(std::string _EnemigoNombre ,int _EnemigoSalud,int _EnemigoDanio
     EnemigoArmadura=_EnemigoArmadura;
 }
 
-Enemigo::PegarAlJugador(){
+void Enemigo::PegarAlJugador(){
     std::cout<<"nashe";
 }

@@ -5,7 +5,7 @@
 #include <conio.h>
 #include <stdlib.h>
 #include "Combate.h"
-
+#pragma once
 void MostrarMapa(const std::vector<std::vector<char>>& Mapa){
     for (auto it = Mapa.begin(); it != Mapa.end(); it++){
         for (auto xd = (*it).begin(); xd != (*it).end(); xd++) {
@@ -137,20 +137,6 @@ void Movimiento(std::vector<std::vector<char>>& Mapa){
 }
 
 
-void VerAccion(char Caracter){
-    /*39
-    # = Puertas
-    E = enemigos
-    */
-   switch(Caracter){
-       case 'E':
-       EncuentroConEnemigo(Caracter); 
-       break;
-       case '#':
-       std::cout<<"noooooo no lo puedo creer una puerta👌";
-       break;
-    }
-} 
 
 void IngresoAEstructura(char caracter){
     std::cout<<"nashe";

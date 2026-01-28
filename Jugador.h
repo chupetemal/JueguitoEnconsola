@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
-
+#pragma once
 class clasePJS{
     private:
     std::string Nombre;
@@ -14,18 +14,17 @@ class clasePJS{
     ~clasePJS();
     clasePJS(std::string,int,int,int);
     void Menu();
-    auto SeleccionDePersonaje(std::string);
+    static clasePJS SeleccionDePersonaje(std::string);
         void VerInventario(); 
         void VerDatosDePersonaje();
         void EquiparObjetos();
         int estado();
-        void pegar();
-
-    };
+        void Pegar();
+};
 
 void clasePJS::Pegar(){
-
-}
+    std::cout<<"espacio RESERVADO";
+};
 
 void clasePJS::VerDatosDePersonaje(){
     std::cout<<"\n";
@@ -68,8 +67,7 @@ void clasePJS::VerInventario(){
     std::cout<<"no esta hecho papoi\n";
 };
 
-
-clasePJS::SeleccionDePersonaje(std::string nombre){
+clasePJS clasePJS::SeleccionDePersonaje(std::string nombre){
     int op;
     while (true){
         std::cout<<"-----------------------------\n";
@@ -86,7 +84,7 @@ clasePJS::SeleccionDePersonaje(std::string nombre){
     };
     std::cout<<"\n";
     //clase guerrero
-    if (op == 1){
+    if(op == 1){
         std::cout<<"usted selecciono la clase guerrero\n";
         return clasePJS(nombre,100,15,25);
     //mago zaza👽
@@ -96,13 +94,3 @@ clasePJS::SeleccionDePersonaje(std::string nombre){
     }
 };
 
-
-
-
-
-void clasePJS::EncuentroConEnemigo(char caracter){
-    if (caracter=='E'){
-        std::cout<<"te encuentras un guardia con una poronga gigante";
-        Combate();
-    }
-}
