@@ -18,6 +18,11 @@ class clasePJS{
     int Fila;
     int Columna;
 public:
+    
+        
+    
+
+
     void VerInventario(); 
 
     void VerDatosDePersonaje();
@@ -35,7 +40,9 @@ public:
     clasePJS(std::string,int,int,int);
 
     void Combate();
-
+    void Pegar();
+    
+    
     void EncuentroConEnemigo(char Caracter);
 
     void VerAccion(char Caracter);
@@ -44,25 +51,35 @@ public:
 
     void MoverPersonaje(int PosicionFilaDeseada, int PosicionColumnasDeseada,std::vector<std::vector<char>>&, JugadorPosicion& Personaje);
 
-    void Pegar();
-
-
+    
+    void clasePJS::GenerarEnemigo();
+    
 
 };
 clasePJS::~clasePJS(){
-}
-class Enemigo{
+    
+};
+
+class Enemigo : private clasePJS
+{
     private:
-        std::string Nombre;
-        int Salud;
-        int Danio;
-        int Armadura;
+        std::string EnemigoNombre;
+        int EnemigoSalud;
+        int EnemigoDanio;
+        int EnemigoArmadura;
     public:
-        
-
-
+        Enemigo(std::string,int,int,int);
+        void PegarAlJugador();
 
 };
+
+Enemigo::Enemigo(std::string _EnemigoNombre ,int _EnemigoSalud,int _EnemigoDanio ,int _EnemigoArmadura){
+    EnemigoNombre=_EnemigoNombre;
+    EnemigoSalud=_EnemigoSalud;
+    EnemigoDanio=_EnemigoDanio;
+    EnemigoArmadura=_EnemigoArmadura;
+}
+
 
 // contrucctor con esto se inicializa las estadisticas del Pj
 clasePJS::clasePJS(std::string _Nombre ,int _Salud,int _Danio ,int _Armadura){
@@ -72,6 +89,12 @@ clasePJS::clasePJS(std::string _Nombre ,int _Salud,int _Danio ,int _Armadura){
     Armadura=_Armadura;
 
 };
+
+clasePJS Jugador = SeleccionDePersonaje(nombre);
+    
+
+
+
 
 void clasePJS::VerDatosDePersonaje(){
     std::cout<<"\n";
