@@ -31,7 +31,7 @@ void clasePJS::VerDatosDePersonaje(){
     std::cout<<"-----------------------------\n";
     std::cout<< "nombre:"  << Nombre     <<"\n";
     std::cout<< "salud:"   << Salud      <<"\n";
-    std::cout<< "daño:"    << Danio      <<"\n";
+    std::cout<< "Ataque:"  << Danio      <<"\n";
     std::cout<< "armadura:"<< Armadura   <<"\n";
     std::cout<<"-----------------------------\n";
     std::cout<<"\n";

@@ -4,7 +4,27 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+    "name": "(gdb) Launch",
+    "type": "cppdbg",
+    "request": "launch",
+    "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+    "args": [],
+    "stopAtEntry": false,
+    "cwd": "${fileDirname}",
+    "environment": [],
+    "externalConsole": true, // Ponlo en true para que se abra una ventana negra aparte
+    "MIMode": "gdb",
+    "miDebuggerPath": "C:\\Users\\VICTUS\\Desktop\\arch\\winlibs-x86_64-posix-seh-gcc-14.2.0-llvm-19.1.1-mingw-w64ucrt-12.0.0-r2\\mingw64\\bin\\gdb.exe", // <--- VERIFICA ESTA RUTA
+    "setupCommands": [
+        {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+        }
+    ],
+    "preLaunchTask": "C/C++: g++.exe build active file" // Debe coincidir con el 'label' de tu tasks.json
+}
 
     ]
 }

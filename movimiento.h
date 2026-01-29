@@ -6,7 +6,18 @@
 #include <stdlib.h>
 #include "Combate.h"
 #pragma once
+struct JugadorPosicion
+        {
+            int Filas;
+            int Columnas;
+            int MapaActual;
+        };JugadorPosicion Posicion ;
 void MostrarMapa(const std::vector<std::vector<char>>& Mapa){
+    std::vector<std::string>NombreDeMapa ={"Bosque","Templo"};
+    std::cout<<"########################"<<"\n";
+    std::cout<<NombreDeMapa[Posicion.MapaActual]<<"\n";
+    std::cout<<"########################"<<"\n";
+
     for (auto it = Mapa.begin(); it != Mapa.end(); it++){
         for (auto xd = (*it).begin(); xd != (*it).end(); xd++) {
             std::cout<<*xd <<" ";
@@ -84,11 +95,6 @@ void VerAccion(char Simbolo){
 }
 
 
-struct JugadorPosicion
-        {
-            int Filas;
-            int Columnas;
-        };
 
 void MoverPersonaje(int PosicionFilaDeseada, int PosicionColumnasDeseada,std::vector<std::vector<char>>& Mapa, JugadorPosicion& Personaje){
     char CaracterPosicionDeseada = Mapa[PosicionFilaDeseada][PosicionColumnasDeseada];
@@ -135,8 +141,6 @@ void Movimiento(std::vector<std::vector<char>>& Mapa){
         }
     }while(true);
 }
-
-
 
 void IngresoAEstructura(char caracter){
     std::cout<<"nashe";
